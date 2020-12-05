@@ -26,11 +26,6 @@ public class EmailTest {
 	
 	//Tests begin here
 	
-	@Test (expected = EmailException.class )
-	public void testAddBccNull() throws Exception{
-		email.addBcc(BAD_ARRAY);
-	}
-	
 	@Test
 	public void testAddBcc() throws Exception{
 		email.addBcc(TEST_EMAILS);
@@ -49,18 +44,6 @@ public class EmailTest {
 		String name = "TestHeader";
 		String value = "1";
 		email.addHeader(name, value);
-	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void testAddHeaderNullVal() throws Exception{
-		String name = "TestHeader";
-		email.addHeader(name, null);
-	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void testAddHeaderNullName() throws Exception{
-		String value = "1";
-		email.addHeader(null, value);
 	}
 	
 	@Test
@@ -86,36 +69,7 @@ public class EmailTest {
 		email.buildMimeMessage();
 	}
 	
-	@Test (expected = IllegalStateException.class)
-	public void testBuildMimeMessageRepeat() throws Exception{
-		String hostname = "Test HostName";
-		email.setHostName(hostname);
-		email.setFrom(TEST_EMAILS[0]);
-		email.addReplyTo(TEST_EMAILS[0], "Test Reply");
-		email.setTo(email.getReplyToAddresses());
-		email.buildMimeMessage();
-		email.buildMimeMessage();
-	}
 	
-	@Test (expected = EmailException.class)
-	public void testBuildMimeMessageNoTo() throws Exception{
-		String hostname = "Test HostName";
-		email.setHostName(hostname);
-		email.setFrom(TEST_EMAILS[0]);
-		email.addReplyTo(TEST_EMAILS[0], "Test Reply");
-		//email.setTo(email.getReplyToAddresses());
-		email.buildMimeMessage();
-	}
-	
-	@Test (expected = EmailException.class)
-	public void testBuildMimeMessageNoFrom() throws Exception{
-		String hostname = "Test HostName";
-		email.setHostName(hostname);
-		//email.setFrom(TEST_EMAILS[0]);
-		email.addReplyTo(TEST_EMAILS[0], "Test Reply");
-		email.setTo(email.getReplyToAddresses());
-		email.buildMimeMessage();
-	}
 	
 	@Test
 	public void testGetHostName() throws Exception{
