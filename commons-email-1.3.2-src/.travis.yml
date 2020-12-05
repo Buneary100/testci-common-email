@@ -1,6 +1,11 @@
+mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+mvn test -B
 language: java
-jdk:
-	- oraclejdk11
+jdk: oraclejdk11
+addons:
+  apt:
+    packages:
+      - oracle-java11-installer
 	
 script:
     - mvn clean install
