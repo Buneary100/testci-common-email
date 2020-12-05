@@ -2,4 +2,6 @@ language: java
 jdk:
 	- oraclejdk11
 	
-script: - mvn clean install
+script:
+    - mvn clean install
+    - jdk_switcher use oraclejdk11
