@@ -1,6 +1,6 @@
-mvn test -B
 language: java
 jdk: oraclejdk11
 script:
-    - mvn clean install
-    - jdk_switcher use oraclejdk11
+    - mvn package
+    - mvn site
+    - mvn site assembly:assembly
